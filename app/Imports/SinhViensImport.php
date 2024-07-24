@@ -36,7 +36,7 @@ class SinhViensImport implements ToModel, WithHeadingRow
         return new SinhVien([
             'ma_sv' => $row['ma_sv'],
             'ten_sinh_vien' => $row['ten_sinh_vien'],
-            'email' => $row['ma_sv'] . '@caothang.edu.vn',
+            'email' => $row['ma_sv'] . '@edu.vn',
             'so_dien_thoai' => $row['so_dien_thoai'],
             'so_cmt' => $row['so_cmt'],
             'gioi_tinh' => $gioiTinh,

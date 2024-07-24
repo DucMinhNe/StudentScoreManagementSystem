@@ -25,7 +25,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="/" class="h1"><b>Admin</b></a>
+                <a href="/" class="h1"><b>Sinh Viên</b></a>
             </div>
             <div style="text-align: center;margin:1rem">
                 <img src="{{ asset('dist/img/ml_logo.png') }}" alt=""
@@ -39,7 +39,7 @@
                     {{ session('error') }}
                 </div>
                 @endif
-                <form action="{{ url('admin/dangnhap') }}" method="post">
+                <form action="{{ url('student/dangnhap') }}" method="post">
                     {{ csrf_field() }}
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="tai_khoan" placeholder="Tài Khoản" required>
@@ -80,14 +80,15 @@
 
                 <p class="mb-1">
                     <a data-toggle="modal" data-target="#modal-lg" href="">Quên Mật Khẩu ?</a>
-                    <!-- <a data-toggle="modal" href="/student/dangnhap">Quên Mật Khẩu ?</a> -->
+                    <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+                        Quên Mật Khẩu ?
+                    </button> -->
                 </p>
                 <!-- <p class="mb-0">
         <a href="" class="text-center">Register a new membership</a>
       </p> -->
-            </div>
-            <button type="button" class="btn btn-default" onclick="window.location.href='/student/dangnhap'">
-                Chuyển Sang Trang Sinh Viên
+            </div> <button type="button" class="btn btn-default" onclick="window.location.href='/admin/dangnhap'">
+                Chuyển Sang Trang Quản Trị Viên
             </button>
             <!-- /.card-body -->
         </div>
@@ -144,7 +145,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-end">
-                  
+                   
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i>
                         Đóng</button>
                 </div>

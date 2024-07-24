@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Admin</title>
+        <title>Sinh Viên</title>
         <link rel="icon" type="image/png" href="{{ asset('dist/img/ml_logo.png') }}" />
         <!-- Google Font: Source Sans Pro -->
         <!-- <link rel="stylesheet"
@@ -71,7 +71,7 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Navbar Search -->
                     <li class="nav-item">
-                        <a href="/admin/dangxuat" class="nav-link">
+                        <a href="/student/dangxuat" class="nav-link">
                             <i class="nav-icon fas fa-right-from-bracket"></i>
                         </a>
                     </li>

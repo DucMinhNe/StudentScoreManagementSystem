@@ -5,6 +5,7 @@ use App\Models\GiangVien;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DangNhapController;
 use App\Http\Controllers\ThongTinCaNhanController;
+use App\Http\Controllers\ThongTinCaNhanSinhVienController;
 use App\Http\Controllers\KhoaController;
 
 
@@ -24,30 +25,17 @@ use App\Http\Controllers\GiangVienController;
 use App\Http\Controllers\ChucVuGiangVienController;
 use App\Http\Controllers\DanhSachChucVuGiangVienController;
 
-
 use App\Http\Controllers\XetTotNghiepController;
 use App\Http\Controllers\SinhVienController;
 use App\Http\Controllers\ChucVuSinhVienController;
 use App\Http\Controllers\DanhSachChucVuSinhVienController;
-use App\Http\Controllers\QuyetDinhController;
-use App\Http\Controllers\CTQuyetDinhController;
-
 
 use App\Http\Controllers\LoaiPhongController;
 use App\Http\Controllers\PhongController;
 
 use App\Http\Controllers\NhapDiemController;
+use App\Http\Controllers\XemDiemController;
 
-
-use App\Http\Controllers\ThongBaoController;
-use App\Http\Controllers\DangKyLopHocPhanController;
-use App\Http\Controllers\ThoiKhoaBieuController;
-use App\Http\Controllers\ThoiGianBieuController;
-use App\Http\Controllers\MoDangKyMonController;
-use App\Http\Controllers\HocPhiController;
-use App\Http\Controllers\ThanhToanHocPhiController;
-use App\Http\Controllers\ThanhToanDangKyLopHocPhan;
-use App\Http\Controllers\ActivityLogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,7 +63,8 @@ Route::get('/admin/dangnhap', [DangNhapController::class,'dangNhap'])->name('log
 Route::post('/admin/dangnhap', [DangNhapController::class,'kiemTraDangNhap']);
 Route::get('/admin/dangxuat', [DangNhapController::class,'dangXuat']);
 Route::get('/', function () {return redirect('/admin');})->middleware('auth');
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+
+Route::group(['middleware' => 'auth:web', 'prefix' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('admin.index');
@@ -149,8 +138,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
         Route::get('/sinhvien/getSinhVienByIdChuyenNganh/{id_chuyen_nganh}', [SinhVienController::class, 'getSinhVienByIdChuyenNganh'])->name('sinhvien.getSinhVienByIdChuyenNganh');
         Route::get('/sinhvien/getSinhVienByIdLop/{id_lop_hoc}', [SinhVienController::class, 'getSinhVienByIdLop'])->name('sinhvien.getSinhVienByIdLop');
 
-        Route::get('/sinhvien/taothesinhvien/{ma_sv}', [SinhVienController::class, 'taoTheSinhVien'])->name('sinhvien.taothesinhvien');
-        Route::get('/sinhvien/taobangten/{hoten}/{lop}', [SinhVienController::class, 'taoBangTen'])->name('sinhvien.taobangten');
         Route::post('/sinhvien/import', [SinhVienController::class, 'import'])->name('sinhvien.import');
         Route::get('/sinhvien/getInactiveData', [SinhVienController::class, 'getInactiveData'])->name('sinhvien.getInactiveData');
         Route::get('/sinhvien/restore/{id}', [SinhVienController::class, 'restore'])->name('sinhvien.restore');
@@ -194,3 +181,19 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/lay-tong-chuyen-nganh', [ChuyenNganhController::class, 'layTongChuyenNganh'])->name('lay-tong-chuyen-nganh');
 });
 Route::get('/lay-thong-tin-quan-tri-vien', [GiangVienController::class, 'layThongTinQuanTriVien'])->name('lay-thong-tin-quan-tri-vien');
+
+Route::get('/student/dangnhap', [DangNhapController::class, 'dangNhapSinhVien'])->name('studentlogin');
+Route::post('/student/dangnhap', [DangNhapController::class, 'kiemTraDangNhapSinhVien']);
+Route::get('/student/dangxuat', [DangNhapController::class, 'dangXuatSinhVien']);
+
+Route::group(['middleware' => 'auth:sinhvien', 'prefix' => 'student'], function () {
+    Route::get('/', function () {
+        return view('student.index');
+    });
+    Route::resource('thongtincanhan', ThongTinCaNhanSinhVienController::class);
+    Route::get('/get-thong-tin-lop-hoc-phan', [NhapDiemController::class, 'getThongTinLopHocPhan']);
+    Route::resource('nhapdiem', NhapDiemController::class);
+    Route::get('xemdiem/get-thong-tin-lop-hoc-phan', [XemDiemController::class, 'getThongTinLopHocPhan']);
+    Route::resource('xemdiem', XemDiemController::class);
+    Route::get('/lay-sinhvien-theo-lophoc/{id_lop_hoc}', [SinhVienController::class, 'laySinhVienTheoLopHoc'])->name('lay-sinhvien-theo-lophoc');
+});

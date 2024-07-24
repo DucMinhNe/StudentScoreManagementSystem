@@ -361,8 +361,8 @@ td {
                                     <label for="bac_dao_tao">Bậc Đào Tạo</label>
                                     <select class="form-control select2" id="bac_dao_tao" name="bac_dao_tao" required>
                                         <option value="">-- Chọn Bậc Đào Tạo--</option>
-                                        <option value="Cao đẳng ngành">Cao đẳng ngành</option>
-                                        <option value="Cao đẳng nghề">Cao đẳng nghề</option>
+                                        <option value="Đại học">Đại học</option>
+                                        <option value="Thạc Sĩ">Thạc Sĩ</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Vui lòng chọn bậc đào tạo.
@@ -427,10 +427,6 @@ td {
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" id="savedata" value="create"><i
                                 class="fa-regular fa-floppy-disk"></i> Lưu</button>
-                        <button type="button" class="btn btn-primary" id="taoBangTenBtn"><i
-                                class="fa-regular fa-rectangle-list"></i> Tạo Bảng Tên</button>
-                        <button type="button" class="btn btn-primary" id="taoTheSinhVienBtn"><i
-                                class="fa-regular fa-rectangle-list"></i> Tạo Thẻ Sinh Viên</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i
                                 class="fa-solid fa-xmark"></i> Hủy</button>
                     </div>
@@ -765,7 +761,7 @@ $(function() {
     });
     $('#ma_sv').on('input', function() {
         var ma_sv = $(this).val();
-        var email = ma_sv + '@caothang.edu.vn';
+        var email = ma_sv + '@edu.vn';
         $('#tai_khoan').val(ma_sv);
         $('#email').val(email);
     });
@@ -773,62 +769,7 @@ $(function() {
         var so_cmt = $(this).val();
         $('#mat_khau').val(so_cmt);
     });
-    $('#taoBangTenBtn').click(function() {
-        var tenSinhVien = $('#ten_sinh_vien').val();
-        var maSinhVien = $('#ma_sv').val();
-        var lop = $('#id_lop_hoc option:selected').text();
-        $.ajax({
-            url: "{{ route('sinhvien.index') }}" + '/taobangten/' + tenSinhVien +
-                '/' +
-                lop,
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                var downloadLink = response;
-                var link = document.createElement('a');
-                link.href = downloadLink;
-                link.download = maSinhVien + '.jpg';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            },
-            error: function(xhr, status, error) {
-                Swal.fire({
-                    title: 'Không đủ thông tin để tạo thẻ',
-                    confirmButtonText: 'Ok',
-                }).then((result) => {
-                    if (result.isConfirmed) {}
-                })
-            }
-        });
-    });
-    $('#taoTheSinhVienBtn').click(function() {
-        var maSinhVien = $('#ma_sv').val();
-        $.ajax({
-            url: "{{ route('sinhvien.index') }}" + '/taothesinhvien/' + maSinhVien,
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                var downloadLink = response;
-                var link = document.createElement('a');
-                link.href = downloadLink;
-                link.download = maSinhVien + '.jpg';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            },
-            error: function(xhr, status, error) {
-                Swal.fire({
-                    title: 'Không đủ thông tin để tạo thẻ',
-                    confirmButtonText: 'Ok',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-
-                    }
-                })
-            }
-        });
-    });
+    
     $('#showInactiveBtn').click(function() {
         var button = $(this);
         var buttonVal = button.val();
@@ -998,14 +939,10 @@ $(function() {
         $('#he_dao_tao').val('').trigger('change');
         $('#id_lop_hoc').val('').trigger('change');
         $('#tinh_trang_hoc').val('').trigger('change');
-        $("#taoBangTenBtn").hide();
-        $("#taoTheSinhVienBtn").hide();
     });
     $('body').on('click', '.editBtn', function() {
         $('#modalForm').removeClass('was-validated');
         $('#ma_sv').attr('readonly', 'readonly');
-        $("#taoBangTenBtn").show();
-        $("#taoTheSinhVienBtn").show();
         var id = $(this).data('id');
         $.get("{{ route('sinhvien.index') }}" + '/' + id + '/edit', function(data) {
             $('#modelHeading').html("Sửa");

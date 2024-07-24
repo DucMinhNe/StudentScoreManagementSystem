@@ -37,14 +37,17 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            //'provider' => 'users',
-            // 'provider' => 'tai_khoan_giang_viens',
-            'provider' => 'giang_viens',
-        ],
+'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'giang_viens',
     ],
+    'sinhvien' => [
+        'driver' => 'session',
+        'provider' => 'sinh_viens',
+    ],
+],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -63,24 +66,16 @@ return [
     |
     */
 
-    'providers' => [
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\User::class,
-        // ],
-        // 'tai_khoan_giang_viens' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\TaiKhoanGiangVien::class,
-        // ],
-        'giang_viens' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\GiangVien::class,
-        ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+'providers' => [
+    'giang_viens' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\GiangVien::class,
     ],
+    'sinh_viens' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\SinhVien::class,
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -97,26 +92,20 @@ return [
     |
     */
 
-    'passwords' => [
-        // 'users' => [
-        //     'provider' => 'users',
-        //     'table' => 'password_resets',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
-        // 'tai_khoan_giang_viens' => [
-        //     'provider' => 'tai_khoan_giang_viens',
-        //     'table' => 'password_resets',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
-        'giang_viens' => [
-            'provider' => 'giang_viens',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+'passwords' => [
+    'giangviens' => [
+        'provider' => 'giang_viens',
+        'table' => 'password_resets',
+        'expire' => 60,
+        'throttle' => 60,
     ],
+    'sinhviens' => [
+        'provider' => 'sinh_viens',
+        'table' => 'password_resets',
+        'expire' => 60,
+        'throttle' => 60,
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------

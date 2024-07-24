@@ -2,9 +2,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="/" class="brand-link">
-          <img src="{{ asset('dist/img/caothang.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          <img src="{{ asset('dist/img/ml_logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
               style="opacity: .8">
-          <span class="brand-text font-weight-light">Cao Thắng</span>
+          <span class="brand-text font-weight-light">Admin</span>
       </a>
 
       <!-- Sidebar -->
@@ -208,37 +208,7 @@
                           </li>
                       </ul>
                   </li>
-                  @php
-                  $isOpen = Request::is('admin/quyetdinh') || Request::is('admin/ctquyetdinh');
-                  @endphp
-                  <li class="nav-item {{ $isOpen ? 'menu-open' : '' }}">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-pen-to-square"></i>
-                          <p>
-                              Quản Lý Quyết Định
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ url('/admin/quyetdinh') }}"
-                                  class="nav-link {{ Request::url() == url('/admin/quyetdinh') ? 'active' : '' }}">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Quyết Định</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ url('/admin/ctquyetdinh') }}"
-                                  class="nav-link {{ Request::url() == url('/admin/ctquyetdinh') ? 'active' : '' }}">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Chi Tiết Quyết Định</p>
-                              </a>
-                          </li>
-
-                      </ul>
-                  </li>
-
-
+                
                   <li class="nav-item">
                       <a href="{{ url('/admin/loaiphong') }}"
                           class="nav-link {{ Request::url() == url('/admin/loaiphong') ? 'active' : '' }}">
