@@ -227,13 +227,13 @@
                           <p>Nhập Điểm</p>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                       <a href="{{ url('/admin/xettotnghiep') }}"
                           class="nav-link {{ Request::url() == url('/admin/xettotnghiep') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-user-graduate"></i>
                           <p>Kết Quả Học Tập</p>
                       </a>
-                  </li>
+                  </li> -->
                   @php
                   $isOpen = Request::is('admin/loaiphong')|| Request::is('admin/phong');
                   @endphp
