@@ -191,8 +191,6 @@ Route::group(['middleware' => 'auth:sinhvien', 'prefix' => 'student'], function 
         return view('student.index');
     });
     Route::resource('thongtincanhan', ThongTinCaNhanSinhVienController::class);
-    Route::get('/get-thong-tin-lop-hoc-phan', [NhapDiemController::class, 'getThongTinLopHocPhan']);
-    Route::resource('nhapdiem', NhapDiemController::class);
     Route::get('xemdiem/get-thong-tin-lop-hoc-phan', [XemDiemController::class, 'getThongTinLopHocPhan']);
     Route::resource('xemdiem', XemDiemController::class);
     Route::get('/lay-sinhvien-theo-lophoc/{id_lop_hoc}', [SinhVienController::class, 'laySinhVienTheoLopHoc'])->name('lay-sinhvien-theo-lophoc');

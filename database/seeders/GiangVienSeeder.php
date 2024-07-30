@@ -19,8 +19,8 @@ class GiangVienSeeder extends Seeder
         DB::table('giang_viens')->insert([
             [
                 'ma_gv' => '046123000',
-                'ten_giang_vien' => 'Lê Đức Minh',
-                'email' => 'leducminh@edu.vn',
+                'ten_giang_vien' => 'Pham Anh Tiến',
+                'email' => 'phamanhtien@edu.vn',
                 'so_dien_thoai' => '0906913419',
                 'so_cmt' => '123456789',
                 'ngay_sinh' => '2002-04-04',
