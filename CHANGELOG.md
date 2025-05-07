@@ -1,0 +1,3 @@
+# Changelog
+
+- update dependencies metadata
