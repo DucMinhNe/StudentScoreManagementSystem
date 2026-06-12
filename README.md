@@ -74,8 +74,9 @@ cd StudentScoreManagementSystem
 composer install
 
 # 2. Configure environment
-#    A working .env is included; adjust DB_* (and MAIL_* for password reset) to your machine,
-#    then generate a fresh app key:
+#    Copy the example config, generate an app key, then fill in DB_*
+#    (and MAIL_* for password reset) for your machine:
+cp .env.example .env
 php artisan key:generate
 
 # 3. Create the database (default name: student_score_mngt), then either…
