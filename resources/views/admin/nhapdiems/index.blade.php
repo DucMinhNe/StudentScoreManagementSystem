@@ -308,13 +308,19 @@ $(function() {
         saveCellValue(column, id, value);
     });
 
+    // Trả về điểm dạng số, hoặc null khi ô trống. Giữ nguyên điểm 0
+    // (parseFloat(...) || null sẽ biến điểm 0 hợp lệ thành null).
+    function parseDiem(text) {
+        var n = parseFloat(String(text).trim());
+        return isNaN(n) ? null : n;
+    }
+
     function saveCellValue(column, id, value) {
         // Kiểm tra giá trị nhập liệu cho chuyên cần
-        var chuyenCan = parseFloat($('[data-column="chuyen_can"][data-id="' + id + '"]').text().trim()) ||
-            null;
-        var tbkt = parseFloat($('[data-column="tbkt"][data-id="' + id + '"]').text().trim()) || null;
-        var thi1 = parseFloat($('[data-column="thi_1"][data-id="' + id + '"]').text().trim()) || null;
-        var thi2 = parseFloat($('[data-column="thi_2"][data-id="' + id + '"]').text().trim()) || null;
+        var chuyenCan = parseDiem($('[data-column="chuyen_can"][data-id="' + id + '"]').text());
+        var tbkt = parseDiem($('[data-column="tbkt"][data-id="' + id + '"]').text());
+        var thi1 = parseDiem($('[data-column="thi_1"][data-id="' + id + '"]').text());
+        var thi2 = parseDiem($('[data-column="thi_2"][data-id="' + id + '"]').text());
         if (chuyenCan != null)
             var valChuyenCan = Math.round(chuyenCan);
         else var valChuyenCan = null;
